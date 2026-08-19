@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Corporate employee events | EVENTS ON",
+    "description": "EVENTS ON produces corporate events for employees: annual nights, team days, kickoffs, and awards. From the brief to a clean strike."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "work": "Work",
+    "team": "Team",
+    "history": "History",
+    "contact": "Contact",
+    "skip": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchTo": "العربية",
+    "useLight": "Light mode",
+    "useDark": "Dark mode"
+  },
+  "cta": {
+    "brief": "Send the brief",
+    "whatsapp": "WhatsApp",
+    "viewWork": "See the work",
+    "viewServices": "All services",
+    "viewTeam": "Meet the team",
+    "viewHistory": "Read the story"
+  },
+  "whatsappPrefill": "Hi EVENTS ON — I'd like to talk about an upcoming event for our people.",
+  "footer": {
+    "tagline": "Keep your event ON!",
+    "house": "A production house for corporate events — from the brief to the empty hall.",
+    "pages": "Pages",
+    "studio": "Studio",
+    "nights": "The nights",
+    "talk": "Contact",
+    "social": "Social",
+    "reels": "Reels",
+    "reelsKicker": "INSTAGRAM",
+    "reelsLead": "Stills from nights we produce. Sample frames until the live reels are in.",
+    "onInstagram": "Watch on Instagram",
+    "sampleReel": "Sample",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "facebook": "Facebook",
+    "tiktok": "TikTok",
+    "youtube": "YouTube",
+    "rights": "© 2026 EVENTS ON. All rights reserved.",
+    "sample": "Real photography and copy will replace these samples without a rebuild."
+  },
+  "form": {
+    "name": "Name",
+    "company": "Company",
+    "email": "Email",
+    "phone": "Mobile",
+    "message": "Where is the event, when, and roughly how many people",
+    "submit": "Send the brief",
+    "sending": "Sending…",
+    "success": "Got it. We'll come back shortly.",
+    "successTitle": "The brief is in.",
+    "required": "This field is required.",
+    "nameShort": "That name is too short.",
+    "badEmail": "That email doesn't look right.",
+    "badPhone": "Enter a valid mobile number, like 01012345678",
+    "phoneHint": "The important one. The number we'll call or WhatsApp.",
+    "messageShort": "Add a bit more about the night.",
+    "error": "Something went wrong. Try WhatsApp or send again.",
+    "missing": "The form is unavailable right now. Use WhatsApp."
+  },
+  "home": {
+    "kicker": "Corporate events",
+    "title": "The night for your people,",
+    "titleAccent": "kept ON.",
+    "lead": "Companies host events for their employees. We design the room, install it, and run the night.",
+    "cycle": ["Annual nights", "Team days", "Kickoffs", "Awards"],
+    "servicesTitle": "What we hand over",
+    "servicesLead": "One team from the first brief until the last person leaves. Handoffs don't become the project.",
+    "workTitle": "Selected work",
+    "workNote": "Sample slots. Real names and pictures swap in later.",
+    "proofTitle": "From brief to strike",
+    "egyptKicker": "The studio",
+    "egyptTitle": "Close to the brief. Closer to the night.",
+    "egyptLead": "We build what the drawings promised. The crew strikes after the last person has gone.",
+    "ctaTitle": "Got a brief? Send it.",
+    "ctaLead": "A short form or WhatsApp. We'll take it from there.",
+    "stat1": "People",
+    "stat1Label": "Employees are the audience. The room has to serve them.",
+    "stat2": "The night",
+    "stat2Label": "Run of show, stage, sound, and hospitality in one mind",
+    "stat3": "After",
+    "stat3Label": "A clean strike. The hall is a hall again.",
+    "historyKicker": "Story",
+    "historyTitle": "History — the house as it was built.",
+    "historyLead": "Not invented dates. The chapters of the work, until the real pictures land.",
+    "teamKicker": "People",
+    "teamTitle": "The team that hands over the night.",
+    "teamLead": "Clear roles. Real names and portraits replace these samples."
+  },
+  "about": {
+    "kicker": "The studio",
+    "title": "A production house for companies that put on a night for their people.",
+    "lead": "EVENTS ON plans, designs, and delivers corporate events: annual nights, team days, kickoffs, and awards.",
+    "body": "You don't need a spectacle site. You need a partner who can take an employee event from first conversation to the last person out.",
+    "body2": "We work in Arabic and English on the same night when the room needs both. Direct, practical, without extra noise.",
+    "processTitle": "How we work",
+    "discover": "Discover",
+    "discoverBody": "We sit with the brief, the employees, and the actual hall. Real floor, real timetable, and the feeling the night should leave.",
+    "design": "Design",
+    "designBody": "Space, graphics, and AV in one conversation. What people see, hear, and walk through.",
+    "produce": "Produce",
+    "produceBody": "Fabrication, install, show calling, and strike. The work employees never see is what makes the night look easy."
+  },
+  "services": {
+    "kicker": "Capabilities",
+    "title": "From a team day to a full stage.",
+    "lead": "Production, AV, hospitality, and logistics — one team, so the night doesn't become a chain of handoffs."
+  },
+  "work": {
+    "kicker": "Work",
+    "title": "Work, waiting for the real pictures.",
+    "lead": "These cards are labeled samples. Layout stays; photography and names swap later.",
+    "sample": "Sample"
+  },
+  "contact": {
+    "kicker": "Start",
+    "title": "Tell us what the night is.",
+    "lead": "Venue, date, and headcount are enough. If you'd rather talk, WhatsApp is faster.",
+    "whatsappLead": "Rather chat?",
+    "whatsappBody": "Send from here. We'll pick it up on the line.",
+    "unavailable": "WhatsApp number is not set yet (NEXT_PUBLIC_WHATSAPP)."
+  },
+  "history": {
+    "kicker": "The house",
+    "title": "How the house was built.",
+    "lead": "Not invented dates. The chapters of the work, until the real pictures land."
+  },
+  "team": {
+    "kicker": "People",
+    "title": "The team that hands over the night.",
+    "lead": "Clear roles. Real names and portraits replace these samples."
+  }
+}
