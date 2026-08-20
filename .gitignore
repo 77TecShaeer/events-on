@@ -22,8 +22,11 @@
 .DS_Store
 *.pem
 npm-debug.log*
-.env*.local
 data/leads.json
 .vercel
 next-env.d.ts
 tsconfig.tsbuildinfo
+
+# Machine-only overrides. Commit `.env` so Hostinger has admin login.
+.env.local
+.env.*.local

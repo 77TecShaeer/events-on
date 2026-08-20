@@ -21,7 +21,7 @@ export const SAMPLE_COMPANY: Company = {
   heroImage: "/media/work/w3.jpg",
 };
 
-export const SAMPLE_SITE_URL = "https://www.eventson.com";
+export const SAMPLE_SITE_URL = "https://events-on.com";
 
 function byId<T extends { id: string }>(items: T[], id: string) {
   return items.find((item) => item.id === id);

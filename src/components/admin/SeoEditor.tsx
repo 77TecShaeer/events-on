@@ -31,7 +31,7 @@ export function SeoEditor({ initial }: { initial: Seo }) {
   const current = seo.pages[page][lang];
   const recommended = defaultSeo().pages[page];
 
-  const host = (seo.siteUrl || "www.eventson.com").replace(/^https?:\/\//, "").replace(/\/+$/, "");
+  const host = (seo.siteUrl || "events-on.com").replace(/^https?:\/\//, "").replace(/\/+$/, "");
   const path = lang === "ar" ? `/ar${SEO_PAGE_META[page].path}` : `/en${SEO_PAGE_META[page].path}`;
 
   const checks = useMemo(() => {
@@ -85,7 +85,7 @@ export function SeoEditor({ initial }: { initial: Seo }) {
           <input
             className="admin-input"
             dir="ltr"
-            placeholder="https://www.eventson.com"
+            placeholder="https://events-on.com"
             value={seo.siteUrl}
             onChange={(event) => setSeo((currentSeo) => ({ ...currentSeo, siteUrl: event.target.value }))}
           />
