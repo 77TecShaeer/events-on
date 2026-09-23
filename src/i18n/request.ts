@@ -9,9 +9,11 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const locale = hasLocale(routing.locales, requested)
     ? requested
     : routing.defaultLocale;
+  const catalog = readSite().messages;
+  const messages = (catalog[locale] ?? catalog[routing.defaultLocale] ?? {}) as AbstractIntlMessages;
 
   return {
     locale,
-    messages: readSite().messages[locale] as AbstractIntlMessages,
+    messages,
   };
 });

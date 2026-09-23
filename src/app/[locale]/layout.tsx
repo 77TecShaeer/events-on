@@ -14,6 +14,8 @@ import { buildPageMetadata } from "@/lib/seo";
 import { whatsappHref } from "@/lib/whatsapp";
 import "../globals.css";
 
+export const dynamic = "force-dynamic";
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -70,5 +72,3 @@ export default async function LocaleLayout({
     </html>
   );
 }
-
-export const dynamicParams = false;
