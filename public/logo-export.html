@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    html, body { margin: 0; padding: 0; background: transparent; }
+    body { display: inline-block; padding: 24px; }
+    /* Exact lockup from src/components/Logo.tsx */
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      color: #2b2b2b;
+      font-family: Inter, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 96px;
+      line-height: 1;
+    }
+    .bar {
+      height: 0.72em;
+      width: 0.46em;
+      flex-shrink: 0;
+      display: block;
+    }
+    .pink { color: #eb1a6c; }
+    .green { color: #79c05e; margin-inline-start: 0.06em; }
+    .v { margin-inline-start: 0.08em; }
+    .nts { margin-inline-start: 0.08em; }
+    .on { margin-inline-start: 0.38em; }
+  </style>
+</head>
+<body>
+  <span class="logo" aria-label="EVENTS ON">
+    <svg class="bar pink" viewBox="0 0 36 56" aria-hidden="true">
+      <rect x="0" y="0" width="36" height="10" fill="currentColor" />
+      <rect x="0" y="23" width="36" height="10" fill="currentColor" />
+      <rect x="0" y="46" width="36" height="10" fill="currentColor" />
+    </svg>
+    <span class="v">V</span>
+    <svg class="bar green" viewBox="0 0 36 56" aria-hidden="true">
+      <rect x="0" y="0" width="36" height="10" fill="currentColor" />
+      <rect x="0" y="23" width="36" height="10" fill="currentColor" />
+      <rect x="0" y="46" width="36" height="10" fill="currentColor" />
+    </svg>
+    <span class="nts">NTS</span>
+    <span class="on">ON</span>
+  </span>
+</body>
+</html>
