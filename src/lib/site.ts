@@ -1,46 +1,51 @@
 import "server-only";
 
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "fs";
-import { dirname, join } from "path";
 import { revalidatePath } from "next/cache";
 import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { readJson, remember, remembered, writeJson } from "@/lib/persist";
 import { defaultSite, resolveSeo, SAMPLE_COMPANY } from "@/lib/site-defaults";
+import { SEO_PAGES, SEO_PAGE_META } from "@/lib/site-types";
 import type { Company, LocaleCatalog, Site } from "@/lib/site-types";
 
-const SITE_PATH = join(process.cwd(), "data", "site.json");
+function hydrate(parsed: Partial<Site> | undefined): Site {
+  const fallback = defaultSite();
+  if (!parsed) return fallback;
+  return {
+    company: { ...fallback.company, ...parsed.company },
+    seo: resolveSeo(parsed.seo),
+    messages: parsed.messages ?? fallback.messages,
+    services: parsed.services?.length ? parsed.services : fallback.services,
+    work: parsed.work?.length ? parsed.work : fallback.work,
+    team: parsed.team?.length ? parsed.team : fallback.team,
+    history: parsed.history?.length ? parsed.history : fallback.history,
+  };
+}
 
 export function readSite(): Site {
-  const fallback = defaultSite();
-  if (!existsSync(SITE_PATH)) return fallback;
-  try {
-    const parsed = JSON.parse(readFileSync(SITE_PATH, "utf8")) as Partial<Site>;
-    return {
-      company: { ...fallback.company, ...parsed.company },
-      seo: resolveSeo(parsed.seo),
-      messages: parsed.messages ?? fallback.messages,
-      services: parsed.services?.length ? parsed.services : fallback.services,
-      work: parsed.work?.length ? parsed.work : fallback.work,
-      team: parsed.team?.length ? parsed.team : fallback.team,
-      history: parsed.history?.length ? parsed.history : fallback.history,
-    };
-  } catch {
-    return fallback;
-  }
+  const cached = remembered("site");
+  if (cached) return cached as Site;
+  const site = hydrate(readJson<Partial<Site>>("site.json", {}));
+  remember("site", site);
+  return site;
 }
 
 export function writeSite(site: Site) {
+  remember("site", site);
   try {
-    mkdirSync(dirname(SITE_PATH), { recursive: true });
-    const tmp = `${SITE_PATH}.${process.pid}.tmp`;
-    writeFileSync(tmp, `${JSON.stringify(site, null, 2)}\n`, "utf8");
-    renameSync(tmp, SITE_PATH);
+    writeJson("site.json", site);
   } catch {
     throw new Error("التعذر كتابة الملف. الداشبورد بتحتاج سيرفر يقدر يحفظ على الديسك.");
   }
 }
 
 export function revalidateSite() {
-  revalidatePath("/[locale]", "layout");
+  revalidatePath("/", "layout");
+  for (const locale of routing.locales) {
+    for (const page of SEO_PAGES) {
+      revalidatePath(`/${locale}${SEO_PAGE_META[page].path}`, "layout");
+    }
+  }
   revalidatePath("/admin", "layout");
   revalidatePath("/sitemap.xml");
   revalidatePath("/robots.txt");

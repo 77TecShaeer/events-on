@@ -6,6 +6,13 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [],
+    unoptimized: true,
+  },
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["events-on.com", "www.events-on.com"],
+      bodySizeLimit: "10mb",
+    },
   },
 };
 

@@ -1,11 +1,8 @@
 import "server-only";
 
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "fs";
-import { dirname, join } from "path";
 import { revalidatePath } from "next/cache";
+import { readJson, remember, remembered, writeJson } from "@/lib/persist";
 import type { Lead } from "@/lib/site-types";
-
-const LEADS_PATH = join(process.cwd(), "data", "leads.json");
 
 export type LeadPatch = Partial<Pick<Lead, "read" | "contacted" | "contactedAt" | "notes">>;
 
@@ -30,21 +27,17 @@ function asLead(value: unknown): Lead | null {
 }
 
 export function readLeads(): Lead[] {
-  if (!existsSync(LEADS_PATH)) return [];
-  try {
-    const parsed = JSON.parse(readFileSync(LEADS_PATH, "utf8")) as unknown;
-    if (!Array.isArray(parsed)) return [];
-    return parsed.map(asLead).filter((item): item is Lead => Boolean(item));
-  } catch {
-    return [];
-  }
+  const cached = remembered("leads");
+  if (Array.isArray(cached)) return cached as Lead[];
+  const parsed = readJson<unknown>("leads.json", []);
+  const leads = Array.isArray(parsed) ? parsed.map(asLead).filter((item): item is Lead => Boolean(item)) : [];
+  remember("leads", leads);
+  return leads;
 }
 
 export function writeLeads(leads: Lead[]) {
-  mkdirSync(dirname(LEADS_PATH), { recursive: true });
-  const tmp = `${LEADS_PATH}.${process.pid}.tmp`;
-  writeFileSync(tmp, `${JSON.stringify(leads, null, 2)}\n`, "utf8");
-  renameSync(tmp, LEADS_PATH);
+  remember("leads", leads);
+  writeJson("leads.json", leads);
 }
 
 export function addLead(lead: Lead) {

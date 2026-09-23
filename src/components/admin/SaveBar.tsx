@@ -15,8 +15,8 @@ export function useSave<T>(action: (value: T) => Promise<void>) {
       await action(value);
       setSaved(true);
       window.setTimeout(() => setSaved(false), 4000);
-    } catch {
-      setError("الحفظ ما تمش. جرّب تاني، ولو فضلت المشكلة كلّم اللي عامل الموقع.");
+    } catch (error) {
+      setError(error instanceof Error && error.message ? error.message : "الحفظ ما تمش. جرّب تاني، ولو فضلت المشكلة كلّم اللي عامل الموقع.");
     } finally {
       setPending(false);
     }
