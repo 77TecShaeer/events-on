@@ -13,8 +13,8 @@
   --color-muted: var(--c-muted);
   --color-line: var(--c-line);
   --color-inset: var(--c-inset);
-  --font-sans: var(--font-outfit, ui-sans-serif), var(--font-inter, system-ui), sans-serif;
-  --font-display: var(--font-unbounded, var(--font-outfit, ui-sans-serif)), sans-serif;
+  --font-sans: var(--font-myriad, ui-sans-serif), var(--font-inter, system-ui), sans-serif;
+  --font-display: var(--font-inter, var(--font-myriad, ui-sans-serif)), sans-serif;
 }
 
 :root {
@@ -43,8 +43,8 @@ html {
 }
 
 html[lang="ar"] {
-  --font-sans: var(--font-plex-ar, ui-sans-serif), system-ui, sans-serif;
-  --font-display: var(--font-kufi, var(--font-plex-ar, ui-sans-serif)), sans-serif;
+  --font-sans: var(--font-cairo, ui-sans-serif), var(--font-adobe-ar, system-ui), sans-serif;
+  --font-display: var(--font-cairo, var(--font-adobe-ar, ui-sans-serif)), sans-serif;
 }
 
 html[lang="ar"] body {
@@ -66,11 +66,13 @@ html[lang="ar"] body {
 html[lang="ar"] .hero-title {
   letter-spacing: 0;
   line-height: 1.14;
+  font-weight: 700;
   font-size: clamp(2.35rem, 7.6vw, 6.1rem);
 }
 
 html[lang="ar"] .font-display {
   letter-spacing: 0;
+  font-weight: 700;
 }
 
 .btn {

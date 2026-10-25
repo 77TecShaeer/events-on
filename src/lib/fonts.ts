@@ -1,49 +1,39 @@
-import {
-  IBM_Plex_Sans_Arabic,
-  Inter,
-  Noto_Kufi_Arabic,
-  Outfit,
-  Unbounded,
-} from "next/font/google";
+import localFont from "next/font/local";
 
-export const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: "variable",
-  display: "swap",
-});
-
-export const unbounded = Unbounded({
-  subsets: ["latin"],
-  variable: "--font-unbounded",
-  weight: ["700", "800", "900"],
-  display: "swap",
-});
-
-export const inter = Inter({
-  subsets: ["latin"],
+export const inter = localFont({
+  src: "../fonts/Inter-Variable.ttf",
   variable: "--font-inter",
-  weight: ["400", "700"],
+  weight: "100 900",
   display: "swap",
 });
 
-export const plexArabic = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-plex-ar",
-  weight: ["400", "500", "700"],
+export const myriad = localFont({
+  src: "../fonts/MyriadPro-Regular.otf",
+  variable: "--font-myriad",
+  weight: "400",
   display: "swap",
 });
 
-export const kufi = Noto_Kufi_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-kufi",
-  weight: ["700", "800", "900"],
+export const cairo = localFont({
+  src: [
+    { path: "../fonts/Cairo-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../fonts/Cairo-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../fonts/Cairo-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-cairo",
+  display: "swap",
+});
+
+export const adobeArabic = localFont({
+  src: "../fonts/AdobeArabic-Regular.otf",
+  variable: "--font-adobe-ar",
+  weight: "400",
   display: "swap",
 });
 
 export function fontClassName(locale: string) {
   if (locale === "ar") {
-    return `${inter.variable} ${plexArabic.variable} ${kufi.variable} ${plexArabic.className}`;
+    return `${inter.variable} ${cairo.variable} ${adobeArabic.variable} ${cairo.className}`;
   }
-  return `${inter.variable} ${outfit.variable} ${unbounded.variable} ${outfit.className}`;
+  return `${inter.variable} ${myriad.variable} ${myriad.className}`;
 }
