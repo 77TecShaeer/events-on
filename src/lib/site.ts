@@ -8,6 +8,12 @@ import { defaultSite, resolveSeo, SAMPLE_COMPANY } from "@/lib/site-defaults";
 import { SEO_PAGES, SEO_PAGE_META } from "@/lib/site-types";
 import type { Company, LocaleCatalog, Site } from "@/lib/site-types";
 
+function mergeById<T extends { id: string }>(saved: T[] | undefined, fallback: T[]) {
+  if (!saved?.length) return fallback;
+  const have = new Set(saved.map((item) => item.id));
+  return [...saved, ...fallback.filter((item) => !have.has(item.id))];
+}
+
 function hydrate(parsed: Partial<Site> | undefined): Site {
   const fallback = defaultSite();
   if (!parsed) return fallback;
@@ -15,7 +21,7 @@ function hydrate(parsed: Partial<Site> | undefined): Site {
     company: { ...fallback.company, ...parsed.company },
     seo: resolveSeo(parsed.seo),
     messages: parsed.messages ?? fallback.messages,
-    services: parsed.services?.length ? parsed.services : fallback.services,
+    services: mergeById(parsed.services, fallback.services),
     work: parsed.work?.length ? parsed.work : fallback.work,
     team: parsed.team?.length ? parsed.team : fallback.team,
     history: parsed.history?.length ? parsed.history : fallback.history,
@@ -23,9 +29,8 @@ function hydrate(parsed: Partial<Site> | undefined): Site {
 }
 
 export function readSite(): Site {
-  const cached = remembered("site");
-  if (cached) return cached as Site;
-  const site = hydrate(readJson<Partial<Site>>("site.json", {}));
+  const cached = remembered("site") as Partial<Site> | undefined;
+  const site = hydrate(cached ?? readJson<Partial<Site>>("site.json", {}));
   remember("site", site);
   return site;
 }

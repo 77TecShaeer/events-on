@@ -28,6 +28,12 @@ export function HistoryEditor({
 
   return (
     <form onSubmit={(event) => status.save(items, event)}>
+      <div className="mb-6 border border-line bg-elevated p-5">
+        <p className="text-sm text-brand-green">Our Story</p>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          الفصول دي هي اللي تظهر في Our Story على الصفحة الرئيسية، وفي صفحة التاريخ.
+        </p>
+      </div>
       <div className="mb-5 flex justify-end">
         <LangTabs value={lang} onChange={setLang} />
       </div>

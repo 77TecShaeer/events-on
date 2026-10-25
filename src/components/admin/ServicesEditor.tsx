@@ -50,6 +50,12 @@ export function ServicesEditor({
 
   return (
     <form onSubmit={(event) => status.save(items, event)}>
+      <div className="mb-6 border border-line bg-elevated p-5">
+        <p className="text-sm text-brand-green">Services</p>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          كل الخدمات هنا تظهر في صفحة الخدمات. الرئيسية بتاخد أول أربع خدمات بس كعيّنة.
+        </p>
+      </div>
       <div className="mb-5 flex justify-end">
         <LangTabs value={lang} onChange={setLang} />
       </div>

@@ -21,18 +21,21 @@ export function Reveal({
     () => {
       if (!canAnimate() || !ref.current) return;
 
-      const items = ref.current.querySelectorAll("[data-reveal-item]");
+      const items = ref.current.querySelectorAll<HTMLElement>("[data-reveal-item]");
       if (items.length) {
-        gsap.from(items, {
-          opacity: 0,
-          y: 72,
-          duration: 1.05,
-          stagger: 0.11,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top 82%",
-          },
+        items.forEach((item) => {
+          gsap.from(item, {
+            autoAlpha: 0,
+            y: 36,
+            duration: 0.8,
+            ease: "power3.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 92%",
+              once: true,
+            },
+          });
         });
         return;
       }

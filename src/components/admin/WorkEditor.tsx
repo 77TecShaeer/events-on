@@ -31,8 +31,17 @@ export function WorkEditor({
     setItems((current) => current.map((item, i) => (i === index ? { ...item, ...patch } : item)));
   }
 
+  const featured = items.filter((item) => item.featured).length;
+
   return (
     <form onSubmit={(event) => status.save(items, event)}>
+      <div className="mb-6 border border-line bg-elevated p-5">
+        <p className="text-sm text-brand-green">Selected Work</p>
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          المشاريع اللي معلّم عليها «ظهر على الصفحة الرئيسية» هي اللي تظهر في Selected Work. الباقي يظهر في صفحة الأعمال.
+          {featured ? ` (${featured} ظاهرين على الرئيسية)` : " علّم مشروع واحد على الأقل عشان الرئيسية متبقاش فاضية."}
+        </p>
+      </div>
       <div className="mb-5 flex justify-end">
         <LangTabs value={lang} onChange={setLang} />
       </div>

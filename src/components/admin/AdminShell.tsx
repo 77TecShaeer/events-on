@@ -10,16 +10,19 @@ import clsx from "clsx";
 const groups = [
   {
     label: "اليوم",
-    items: [{ href: "/admin/leads", label: "الطلبات", hint: "اللي بيجي من فورم الموقع" }],
+    items: [
+      { href: "/admin", label: "الاختصارات", hint: "Selected Work و Our Story من هنا" },
+      { href: "/admin/leads", label: "الطلبات", hint: "اللي بيجي من فورم الموقع" },
+    ],
   },
   {
     label: "الموقع",
     items: [
+      { href: "/admin/work", label: "Selected Work", hint: "المشاريع على الرئيسية وصفحة الأعمال" },
+      { href: "/admin/history", label: "Our Story", hint: "فصول القصة على الرئيسية وصفحة التاريخ" },
+      { href: "/admin/services", label: "Services", hint: "كل الخدمات على صفحة الخدمات" },
       { href: "/admin/copy", label: "الكلام", hint: "العناوين والجمل على الصفحات" },
-      { href: "/admin/work", label: "الأعمال", hint: "صور ومشاريع المعرض" },
-      { href: "/admin/services", label: "الخدمات", hint: "أسماء الخدمات وشرحها" },
       { href: "/admin/team", label: "الفريق", hint: "صور الأدوار والجمل" },
-      { href: "/admin/history", label: "قصتنا", hint: "فصول القصة على الموقع" },
     ],
   },
   {
@@ -34,6 +37,7 @@ const groups = [
 const extra = [{ href: "/admin/media", label: "الصور", hint: "مكتبة الصور" }];
 
 function active(pathname: string, href: string) {
+  if (href === "/admin") return pathname === "/admin";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
@@ -70,7 +74,7 @@ export function AdminShell({
         )}
       >
         <div className="flex items-center justify-between px-5 pt-6 pb-2">
-          <Link href="/admin/leads" className="inline-flex max-w-full text-[16px]">
+          <Link href="/admin" className="inline-flex max-w-full text-[16px]">
             <Logo variant="onDark" />
           </Link>
           <button type="button" className="text-sm text-white/50 lg:hidden" onClick={() => setOpen(false)}>
