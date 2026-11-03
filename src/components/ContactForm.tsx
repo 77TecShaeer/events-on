@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState, useState, type FormEvent } from "react";
+import { useActionState, useEffect, useRef, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { submitLeadAction } from "@/app/admin/actions";
 import { Button } from "@/components/Button";
+import { trackMeta } from "@/components/MetaPixelPageView";
 import { validateBrief, sanitizeCompanyInput, sanitizeEmailInput, sanitizeNameInput, sanitizePhoneInput, type BriefField, type BriefIssue } from "@/lib/brief";
 import clsx from "clsx";
 
@@ -31,6 +32,13 @@ export function ContactForm() {
   const locale = useLocale();
   const [state, action, pending] = useActionState(submitLeadAction, null);
   const [errors, setErrors] = useState<Errors>({});
+  const leadTracked = useRef(false);
+
+  useEffect(() => {
+    if (!state?.ok || leadTracked.current) return;
+    leadTracked.current = true;
+    trackMeta("Lead");
+  }, [state?.ok]);
 
   function issueText(issue: BriefIssue) {
     const key = issue === "nameShort" || issue === "messageShort" || issue === "badPhone" || issue === "badEmail" || issue === "required" ? issue : "required";

@@ -12,7 +12,7 @@ import {
 import { listMedia, saveUpload } from "@/lib/media";
 import { addLead, patchLead, removeLead } from "@/lib/leads";
 import { validateBrief } from "@/lib/brief";
-import { readSite, revalidateSite, writeSite } from "@/lib/site";
+import { normalizeServices, normalizeWork, readSite, revalidateSite, writeSite } from "@/lib/site";
 import type {
   Company,
   HistoryRecord,
@@ -166,7 +166,7 @@ export async function saveMessagesAction(messages: SiteMessages) {
 export async function saveServicesAction(services: ServiceRecord[]) {
   await requireAdmin();
   const site = readSite();
-  site.services = services;
+  site.services = normalizeServices(services);
   writeSite(site);
   revalidateSite();
 }
@@ -174,7 +174,7 @@ export async function saveServicesAction(services: ServiceRecord[]) {
 export async function saveWorkAction(work: WorkRecord[]) {
   await requireAdmin();
   const site = readSite();
-  site.work = work;
+  site.work = work.map((item) => normalizeWork(item));
   writeSite(site);
   revalidateSite();
 }

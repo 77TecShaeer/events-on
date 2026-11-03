@@ -53,7 +53,7 @@ export function ServicesEditor({
       <div className="mb-6 border border-line bg-elevated p-5">
         <p className="text-sm text-brand-green">Services</p>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-          كل الخدمات هنا تظهر في صفحة الخدمات. الرئيسية بتاخد أول أربع خدمات بس كعيّنة.
+          اللي هنا هو اللي يظهر في الموقع. الرئيسية بتاخد أول أربع. الخدمة اللي تمسحها وتحفظ مش بترجع.
         </p>
       </div>
       <div className="mb-5 flex justify-end">
@@ -64,7 +64,7 @@ export function ServicesEditor({
           const expanded = open === index;
           const loc = item[lang];
           return (
-            <article key={`${item.id}-${index}`} className="border border-line bg-elevated">
+            <article key={item.uid || `${item.id}-${index}`} className="border border-line bg-elevated">
               <button
                 type="button"
                 className="flex w-full items-center justify-between gap-4 p-4 text-start"
@@ -79,8 +79,8 @@ export function ServicesEditor({
                     <span>شكل الأيقونة</span>
                     <select
                       className="admin-select"
-                      value={item.id}
-                      onChange={(event) => update(index, { id: event.target.value })}
+                      value={item.icon || item.id}
+                      onChange={(event) => update(index, { id: event.target.value, icon: event.target.value })}
                     >
                       {icons.map((icon) => (
                         <option key={icon.id} value={icon.id}>
@@ -127,7 +127,16 @@ export function ServicesEditor({
         type="button"
         className="btn btn-secondary btn-sm mt-6"
         onClick={() => {
-          setItems((current) => [...current, { id: "events", ar: { title: "", body: "" }, en: { title: "", body: "" } }]);
+          setItems((current) => [
+            ...current,
+            {
+              uid: `s-${Math.random().toString(36).slice(2, 8)}`,
+              id: "events",
+              icon: "events",
+              ar: { title: "", body: "" },
+              en: { title: "", body: "" },
+            },
+          ]);
           setOpen(items.length);
         }}
       >

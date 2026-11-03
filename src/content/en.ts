@@ -1,7 +1,14 @@
 export type Service = {
   id: string;
+  icon?: string;
   title: string;
   body: string;
+};
+
+export type WorkVisual = {
+  src: string;
+  alt: string;
+  caption: string;
 };
 
 export type WorkItem = {
@@ -12,6 +19,11 @@ export type WorkItem = {
   tone: "pink" | "green" | "ink";
   image: string;
   alt: string;
+  visuals?: WorkVisual[];
+  summary?: string;
+  brief?: string;
+  approach?: string;
+  outcome?: string;
 };
 
 export const services: Service[] = [

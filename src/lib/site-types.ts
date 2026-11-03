@@ -14,9 +14,28 @@ export type Company = {
 };
 
 export type ServiceRecord = {
+  uid: string;
   id: string;
+  icon: string;
   ar: { title: string; body: string };
   en: { title: string; body: string };
+};
+
+export type WorkCopy = {
+  title: string;
+  category: string;
+  venue: string;
+  alt: string;
+  summary: string;
+  brief: string;
+  approach: string;
+  outcome: string;
+};
+
+export type WorkVisualRecord = {
+  src: string;
+  ar: { alt: string; caption: string };
+  en: { alt: string; caption: string };
 };
 
 export type WorkRecord = {
@@ -24,8 +43,9 @@ export type WorkRecord = {
   featured: boolean;
   tone: Tone;
   image: string;
-  ar: { title: string; category: string; venue: string; alt: string };
-  en: { title: string; category: string; venue: string; alt: string };
+  visuals: WorkVisualRecord[];
+  ar: WorkCopy;
+  en: WorkCopy;
 };
 
 export type TeamRecord = {
@@ -79,6 +99,7 @@ export type Seo = {
   ogImage: string;
   index: boolean;
   googleVerification: string;
+  metaPixelId: string;
   pages: Record<SeoPageId, SeoPage>;
 };
 

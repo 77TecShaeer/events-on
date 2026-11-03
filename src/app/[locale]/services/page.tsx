@@ -30,7 +30,7 @@ export default async function ServicesPage({
             data-reveal-item
             className="border border-line bg-elevated p-5 transition hover:border-brand-green/40"
           >
-            <ServiceIcon id={service.id} />
+            <ServiceIcon id={service.icon || service.id} />
             <h2 className="mt-4 text-lg font-medium">{service.title}</h2>
             <p className="mt-2 text-sm text-muted">{service.body}</p>
           </article>

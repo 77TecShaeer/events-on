@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Reveal } from "@/components/Reveal";
-import { WorkCard } from "@/components/WorkCard";
+import { CaseStudy } from "@/components/CaseStudy";
 import { HeroStage } from "@/components/home/HeroStage";
 import { TaglineRail } from "@/components/home/TaglineRail";
 import { HistoryRail } from "@/components/home/HistoryRail";
@@ -80,10 +80,18 @@ export default async function HomePage({
             </div>
             <TextLink href="/work">{cta("viewWork")}</TextLink>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-12">
             {featured.map((item) => (
               <div key={item.id} data-reveal-item>
-                <WorkCard item={item} sampleLabel={workT("sample")} />
+                <CaseStudy
+                  item={item}
+                  labels={{
+                    brief: workT("brief"),
+                    approach: workT("approach"),
+                    outcome: workT("outcome"),
+                    sample: workT("sample"),
+                  }}
+                />
               </div>
             ))}
           </div>

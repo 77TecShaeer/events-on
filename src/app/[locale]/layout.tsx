@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ScrollFX } from "@/components/ScrollFX";
 import { fontClassName } from "@/lib/fonts";
 import { themeBootScript } from "@/lib/theme";
+import { MetaPixel } from "@/components/MetaPixel";
 import { readSite, resolveCompany } from "@/lib/site";
 import { buildPageMetadata } from "@/lib/seo";
 import { whatsappHref } from "@/lib/whatsapp";
@@ -44,7 +45,8 @@ export default async function LocaleLayout({
   const t = await getTranslations("nav");
   const prefill = await getTranslations();
   const dir = locale === "ar" ? "rtl" : "ltr";
-  const wa = whatsappHref(resolveCompany(readSite().company).whatsapp, prefill("whatsappPrefill"));
+  const site = readSite();
+  const wa = whatsappHref(resolveCompany(site.company).whatsapp, prefill("whatsappPrefill"));
 
   return (
     <html
@@ -68,6 +70,7 @@ export default async function LocaleLayout({
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
+        <MetaPixel pixelId={site.seo.metaPixelId} />
       </body>
     </html>
   );

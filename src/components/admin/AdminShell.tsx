@@ -18,7 +18,7 @@ const groups = [
   {
     label: "الموقع",
     items: [
-      { href: "/admin/work", label: "Selected Work", hint: "المشاريع على الرئيسية وصفحة الأعمال" },
+      { href: "/admin/work", label: "Selected Work", hint: "كيس ستادي لكل مشروع على الرئيسية وصفحة الأعمال" },
       { href: "/admin/history", label: "Our Story", hint: "فصول القصة على الرئيسية وصفحة التاريخ" },
       { href: "/admin/services", label: "Services", hint: "كل الخدمات على صفحة الخدمات" },
       { href: "/admin/copy", label: "الكلام", hint: "العناوين والجمل على الصفحات" },
@@ -29,7 +29,7 @@ const groups = [
     label: "الإعدادات",
     items: [
       { href: "/admin/settings", label: "التواصل", hint: "واتساب، إيميل، ولينكات الصفحات" },
-      { href: "/admin/seo", label: "جوجل", hint: "العنوان والوصف في نتائج البحث" },
+      { href: "/admin/seo", label: "جوجل", hint: "نتائج البحث وكود Meta Pixel" },
     ],
   },
 ];

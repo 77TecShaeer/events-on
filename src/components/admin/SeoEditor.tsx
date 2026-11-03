@@ -39,10 +39,11 @@ export function SeoEditor({ initial }: { initial: Seo }) {
       { ok: Boolean(seo.siteUrl), text: seo.siteUrl ? "رابط الموقع متسجل — السايتماب يقدر يشتغل." : "حط رابط الموقع على الإنترنت. من غيره جوجل مش هيلاقي السايتماب." },
       { ok: seo.index, text: seo.index ? "الموقع مفتوح لجوجل." : "الظهور في جوجل مقفول. فعّله تحت." },
       { ok: Boolean(seo.googleVerification), text: seo.googleVerification ? "كود سيرش كونسول موجود." : "اربط Google Search Console بالكود. من غيره مش هتشوف الكلمات اللي جابتك." },
+      { ok: Boolean(seo.metaPixelId), text: seo.metaPixelId ? "Meta Pixel متوصل." : "حط رقم Meta Pixel عشان تقيس الزيارات والطلبات." },
       { ok: Boolean(seo.ogImage), text: "صورة المشاركة جاهزة لواتساب ولينكدإن." },
     ];
     return items;
-  }, [seo.googleVerification, seo.index, seo.ogImage, seo.siteUrl]);
+  }, [seo.googleVerification, seo.index, seo.metaPixelId, seo.ogImage, seo.siteUrl]);
 
   function patchPage(locale: "ar" | "en", key: "title" | "description" | "keywords", value: string) {
     setSeo((currentSeo) => ({
@@ -100,6 +101,19 @@ export function SeoEditor({ initial }: { initial: Seo }) {
             onChange={(event) => setSeo((currentSeo) => ({ ...currentSeo, googleVerification: event.target.value }))}
           />
           <span className="text-xs text-muted">من Search Console → ملكية الموقع → HTML tag. حط القيمة اللي جوه content بس.</span>
+        </label>
+        <label className="grid gap-1 text-sm">
+          <span>Meta Pixel</span>
+          <input
+            className="admin-input"
+            dir="ltr"
+            placeholder="123456789012345"
+            value={seo.metaPixelId}
+            onChange={(event) => setSeo((currentSeo) => ({ ...currentSeo, metaPixelId: event.target.value }))}
+          />
+          <span className="text-xs text-muted">
+            من Events Manager انسخ رقم الـ Pixel، أو الصق كود الـ Pixel كامل. بعد الحفظ بيتسجل PageView على كل الصفحات، وLead لما الفورم يتبعت.
+          </span>
         </label>
         <label className="flex items-center gap-3 text-sm">
           <input

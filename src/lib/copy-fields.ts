@@ -95,6 +95,9 @@ export const COPY_SECTIONS: CopySection[] = [
       { path: "work.title", label: "العنوان" },
       { path: "work.lead", label: "المقدمة", area: true },
       { path: "work.sample", label: "كلمة عيّنة على الصور" },
+      { path: "work.brief", label: "عنوان خانة المطلوب" },
+      { path: "work.approach", label: "عنوان خانة التنفيذ" },
+      { path: "work.outcome", label: "عنوان خانة النتيجة" },
     ],
   },
   {

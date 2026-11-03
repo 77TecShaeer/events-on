@@ -76,7 +76,7 @@
     "servicesTitle": "What we hand over",
     "servicesLead": "One team from the first brief until the last person leaves. Handoffs don't become the project.",
     "workTitle": "Selected work",
-    "workNote": "Sample slots. Real names and pictures swap in later.",
+    "workNote": "A case study for each night — the brief, the making, and more than one picture.",
     "proofTitle": "From brief to strike",
     "egyptKicker": "The studio",
     "egyptTitle": "Close to the brief. Closer to the night.",
@@ -118,8 +118,11 @@
   "work": {
     "kicker": "Work",
     "title": "Work, waiting for the real pictures.",
-    "lead": "These cards are labeled samples. Layout stays; photography and names swap later.",
-    "sample": "Sample"
+    "lead": "Each project is a case study: what was asked, how the night was made, and the pictures from the room.",
+    "sample": "Sample",
+    "brief": "The brief",
+    "approach": "The making",
+    "outcome": "The night"
   },
   "contact": {
     "kicker": "Start",

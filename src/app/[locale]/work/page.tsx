@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { WorkCard } from "@/components/WorkCard";
+import { CaseStudy } from "@/components/CaseStudy";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
 import { getContent } from "@/content";
@@ -23,10 +23,18 @@ export default async function WorkPage({
     <div className="mx-auto max-w-6xl px-5 py-20">
       <JsonLd locale={locale} page="work" />
       <PageHero kicker={t("kicker")} title={t("title")} lead={t("lead")} />
-      <Reveal className="mt-14 grid gap-6 sm:grid-cols-2">
+      <Reveal className="mt-14 grid gap-12">
         {content.work.map((item) => (
           <div key={item.id} data-reveal-item>
-            <WorkCard item={item} sampleLabel={t("sample")} />
+            <CaseStudy
+              item={item}
+              labels={{
+                brief: t("brief"),
+                approach: t("approach"),
+                outcome: t("outcome"),
+                sample: t("sample"),
+              }}
+            />
           </div>
         ))}
       </Reveal>

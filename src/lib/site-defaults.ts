@@ -54,6 +54,7 @@ export function defaultSeo(): Seo {
     ogImage: "/media/work/w3.jpg",
     index: true,
     googleVerification: env("GOOGLE_SITE_VERIFICATION") || env("NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION"),
+    metaPixelId: pixelId(env("NEXT_PUBLIC_META_PIXEL_ID")),
     pages: {
       home: {
         ar: seoCopy(
@@ -177,6 +178,17 @@ function normalizeUrl(value: string) {
   return `https://${trimmed}`;
 }
 
+/** Accepts a Pixel ID, or a pasted Meta snippet, and keeps the digits only. */
+export function pixelId(value: string | undefined | null) {
+  const raw = (value ?? "").trim();
+  if (!raw) return "";
+  const init = raw.match(/fbq\(\s*['"]init['"]\s*,\s*['"](\d{5,20})['"]/);
+  if (init?.[1]) return init[1];
+  const fromUrl = raw.match(/[?&]id=(\d{5,20})/);
+  if (fromUrl?.[1] && raw.length > 20) return fromUrl[1];
+  return /^\d{5,20}$/.test(raw) ? raw : "";
+}
+
 export function resolveSeo(incoming?: Partial<Seo> | null): Seo {
   const fallback = defaultSeo();
   const pages = { ...fallback.pages };
@@ -193,6 +205,10 @@ export function resolveSeo(incoming?: Partial<Seo> | null): Seo {
     ogImage: incoming?.ogImage?.trim() || fallback.ogImage,
     index: incoming?.index ?? fallback.index,
     googleVerification: incoming?.googleVerification?.trim() ?? fallback.googleVerification,
+    metaPixelId:
+      incoming && Object.prototype.hasOwnProperty.call(incoming, "metaPixelId")
+        ? pixelId(incoming.metaPixelId)
+        : fallback.metaPixelId,
     pages,
   };
 }
@@ -208,29 +224,41 @@ export function defaultSite(): Site {
     services: en.services.map((item) => {
       const localized = byId(ar.services, item.id) ?? item;
       return {
+        uid: item.id,
         id: item.id,
+        icon: item.id,
         ar: { title: localized.title, body: localized.body },
         en: { title: item.title, body: item.body },
       };
     }),
     work: en.work.map((item) => {
       const localized = byId(ar.work, item.id) ?? item;
+      const story = { summary: "", brief: "", approach: "", outcome: "" };
       return {
         id: item.id,
         featured: (en.featuredWorkIds as readonly string[]).includes(item.id),
         tone: item.tone,
         image: item.image,
+        visuals: [
+          {
+            src: item.image,
+            ar: { alt: localized.alt, caption: "" },
+            en: { alt: item.alt, caption: "" },
+          },
+        ],
         ar: {
           title: localized.title,
           category: localized.category,
           venue: localized.venue,
           alt: localized.alt,
+          ...story,
         },
         en: {
           title: item.title,
           category: item.category,
           venue: item.venue,
           alt: item.alt,
+          ...story,
         },
       };
     }),
